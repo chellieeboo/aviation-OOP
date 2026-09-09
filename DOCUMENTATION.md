@@ -1,7 +1,7 @@
 # FINAL PROJECT DOCUMENTATION
 
-**Name:** [Insert Your Full Name Here]  
-**Course & Year:** [Insert Your Course & Year Here, e.g., BSIT 2nd Year]  
+**Name:** Rochelle Bayogbog  
+**Course & Year:** BSIT 2nd Year
 **Subject:** Object-Oriented Programming  
 
 ---
@@ -54,33 +54,51 @@
 
 ---
 
-## Properties
 
-### MAIN CLASS: Employee
-#### 1. Employee Class Properties
 
-| Data Type | Property | Description | Sample Value |
-|---|---|---|---|
-| `String` | `employeeName` | Full name of the employee or manager | `"Juan Dela Cruz"` |
-| `int` | `employeeId` | Unique numeric identifier for the employee | `1001` |
-| `String` | `department` | Organizational unit or division | `"Operations"` |
-| `String` | `position` | Primary job title or managerial role | `"Senior Manager"` |
-| `double` | `salary` | Monthly base compensation in PHP | `50000.00` |
 
----
+                                         
+ AviationOps                                    
+                              Main Class                                     
+            ┌─────────────────────────────────────────┐                      
+            │ Employee: Properties                    │                      
+            │ - employeeName                          │                      
+            │ - employeeId                            │                      
+            │ - department                            │                      
+            │ - position                              │                      
+            │ - salary                                │                      
+            ├─────────────────────────────────────────┤                      
+            │ Employee: Methods                       │                      
+            │ + displayInfo()                         │                      
+            │ + displayStaff()                        │                      
+            │ + addStaff()                            │                      
+            │ + editStaff()                           │                      
+            │ + staffActions()                        │                      
+            └─────────────────────────────────────────┘                      
+                                                                             
+                                                                             
+                              AviationOps                                    
+                              Child Class                                    
+            ┌─────────────────────────────────────────┐                      
+            │ AviationStaff: Properties               │                      
+            │ - designation                           │                      
+            │ - workSchedule                          │                      
+            │ - tenure                                │                      
+            │ - isClockedIn                           │                      
+            │ - salary                                │                      
+            ├─────────────────────────────────────────┤                      
+            │ AviationStaff: Methods                  │                      
+            │ + displayInfo()                         │                      
+            │ + timeIn()                              │                      
+            │ + timeOut()                             │                      
+            │ + updateDesignation()                   │                      
+            │ + computeOvertime()                     │                      
+            └─────────────────────────────────────────┘                      
+  ──────                             
 
-### CHILD CLASS: AviationStaff
-#### 1. AviationStaff Class Properties
 
-| Data Type | Property | Description | Sample Value |
-|---|---|---|---|
-| `String` | `designation` | Specific aviation job role or flight title | `"Pilot"` |
-| `String` | `workSchedule` | Assigned shift or duty hours | `"Morning"` |
-| `int` | `tenure` | Completed years of airline service | `7` |
-| `boolean` | `isClockedIn` | Flight/duty attendance status | `true` |
-| `double` | `salary` | Inherited monthly base salary for overtime computation | `95000.00` |
 
----
+
 
 ## Methods
 
