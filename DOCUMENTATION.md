@@ -13,93 +13,43 @@
 
 ## Class Diagram
 
-```text
-                          AviationOps
-                          Main Class
-        ┌─────────────────────────────────────────┐
-        │ Employee: Properties                    │
-        │ - employeeName                          │
-        │ - employeeId                            │
-        │ - department                            │
-        │ - position                              │
-        │ - salary                                │
-        ├─────────────────────────────────────────┤
-        │ Employee: Methods                       │
-        │ + displayInfo()                         │
-        │ + displayStaff()                        │
-        │ + addStaff()                            │
-        │ + editStaff()                           │
-        │ + staffActions()                        │
-        └─────────────────────────────────────────┘
+Class Diagram
 
-
-                          AviationOps
-                          Child Class
-        ┌─────────────────────────────────────────┐
-        │ AviationStaff: Properties               │
-        │ - designation                           │
-        │ - workSchedule                          │
-        │ - tenure                                │
-        │ - isClockedIn                           │
-        │ - salary                                │
-        ├─────────────────────────────────────────┤
-        │ AviationStaff: Methods                  │
-        │ + displayInfo()                         │
-        │ + timeIn()                              │
-        │ + timeOut()                             │
-        │ + updateDesignation()                   │
-        │ + computeOvertime()                     │
-        └─────────────────────────────────────────┘
-```
-
----
-
-
-
-
-                                         
- AviationOps                                    
-                              Main Class                                     
-            ┌─────────────────────────────────────────┐                      
-            │ Employee: Properties                    │                      
-            │ - employeeName                          │                      
-            │ - employeeId                            │                      
-            │ - department                            │                      
-            │ - position                              │                      
-            │ - salary                                │                      
-            ├─────────────────────────────────────────┤                      
-            │ Employee: Methods                       │                      
-            │ + displayInfo()                         │                      
-            │ + displayStaff()                        │                      
-            │ + addStaff()                            │                      
-            │ + editStaff()                           │                      
-            │ + staffActions()                        │                      
-            └─────────────────────────────────────────┘                      
-                                                                             
-                                                                             
-                              AviationOps                                    
-                              Child Class                                    
-            ┌─────────────────────────────────────────┐                      
-            │ AviationStaff: Properties               │                      
-            │ - designation                           │                      
-            │ - workSchedule                          │                      
-            │ - tenure                                │                      
-            │ - isClockedIn                           │                      
-            │ - salary                                │                      
-            ├─────────────────────────────────────────┤                      
-            │ AviationStaff: Methods                  │                      
-            │ + displayInfo()                         │                      
-            │ + timeIn()                              │                      
-            │ + timeOut()                             │                      
-            │ + updateDesignation()                   │                      
-            │ + computeOvertime()                     │                      
-            └─────────────────────────────────────────┘                      
-  ──────                             
-
-
-
-
-
+                              Main Class
+            ┌─────────────────────────────────────────┐
+            │ Employee: Properties                    │
+            │ - employeeName                          │
+            │ - employeeId                            │
+            │ - department                            │
+            │ - position                              │
+            │ - salary                                │
+            ├─────────────────────────────────────────┤
+            │ Employee: Methods                       │
+            │ + displayInfo()                         │
+            │ + displayStaff()                        │
+            │ + addStaff()                             │
+            │ + editStaff()                            │
+            │ + staffActions()                        │
+            └─────────────────────────────────────────┘
+                              │
+                              │  has  1 ────── 0..*
+                              ▼
+                              Object/Child Class
+            ┌─────────────────────────────────────────┐
+            │ AviationStaff: Properties               │
+            │ - staffName                             │
+            │ - designation                           │
+            │ - workSchedule                          │
+            │ - tenure                                │
+            │ - isClockedIn                           │
+            ├─────────────────────────────────────────┤
+            │ AviationStaff: Methods                  │
+            │ + displayInfo()                         │
+            │ + timeIn()                              │
+            │ + timeOut()                             │
+            │ + updateDesignation()                   │
+            │ + computeOvertime()                     │
+            └─────────────────────────────────────────┘
 ## Methods
 
 ### MAIN CLASS: Employee
