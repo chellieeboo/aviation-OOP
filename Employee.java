@@ -1,165 +1,203 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Employee.java
+ * Main Class
+ *
+ * Represents an Aviation Operations manager/employee. This class "has"
+ * (manages) a list of AviationStaff members - a composition / "has-many"
+ * relationship, NOT inheritance. One Employee can oversee many
+ * AviationStaff (1 -------- 0..*).
+ */
 public class Employee {
-    // Fields – default access (no private), just like your whiteboard
+
+    // ================= Properties =================
     String employeeName;
     int employeeId;
     String department;
     String position;
     double salary;
-    ArrayList<AviationStaff> staffList; // list of aviation staff under this employee
 
-    // Constructor
+    // Composition: Employee "has" a list of AviationStaff
+    ArrayList<AviationStaff> staffList;
+
+    // ================= Constructor =================
     public Employee(String employeeName, int employeeId, String department, String position, double salary) {
         this.employeeName = employeeName;
         this.employeeId = employeeId;
         this.department = department;
         this.position = position;
         this.salary = salary;
-        this.staffList = new ArrayList<>(); // initialize the list
+        this.staffList = new ArrayList<>();
     }
 
-    // Method #1: displayInfo()
+    // ================= Methods =================
+
+    /**
+     * Displays the personal and employment details of the employee
+     * (ID, Name, Department, Position, Salary).
+     */
     public void displayInfo() {
-        System.out.println("===== Employee Details =====");
-        System.out.println("ID         : " + employeeId);
-        System.out.println("Name       : " + employeeName);
-        System.out.println("Department : " + department);
-        System.out.println("Position   : " + position);
-        System.out.println("Salary     : PHP " + salary);
+        System.out.println("========================================");
+        System.out.println("        EMPLOYEE / MANAGER INFO");
+        System.out.println("========================================");
+        System.out.println("Employee ID : " + employeeId);
+        System.out.println("Name        : " + employeeName);
+        System.out.println("Department  : " + department);
+        System.out.println("Position    : " + position);
+        System.out.println("Salary      : PHP " + String.format("%.2f", salary));
+        System.out.println("========================================");
     }
 
-    // Method #2: displayStaff()
+    /**
+     * Displays the formatted list of all registered aviation staff
+     * members under this manager.
+     */
     public void displayStaff() {
         if (staffList.isEmpty()) {
-            System.out.println("No staff assigned to this manager.");
-            return;
-        }
-        System.out.println("===== Staff List =====");
-        for (int i = 0; i < staffList.size(); i++) {
-            System.out.println("\n--- Staff #" + (i + 1) + " ---");
-            staffList.get(i).displayInfo(); // polymorphic call
+            System.out.println("No aviation staff registered yet.");
+        } else {
+            for (int i = 0; i < staffList.size(); i++) {
+                System.out.println("\n[" + (i + 1) + "]");
+                staffList.get(i).displayInfo();
+            }
         }
     }
 
-    // Method #3: addStaff()
+    /**
+     * Prompts the user for details to register a new aviation staff
+     * member and adds them to the staff list.
+     */
     public void addStaff(Scanner scanner) {
-        System.out.println("--- Add New Staff ---");
-        System.out.print("Enter staff name: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter staff ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); // consume newline
-        System.out.print("Enter designation (e.g., Pilot, Co-pilot, Cabin Crew): ");
+        System.out.println("Enter staff name:");
+        String staffName = scanner.nextLine();
+
+        System.out.println("Enter designation (e.g. Pilot, Co-pilot, Ground Crew):");
         String designation = scanner.nextLine();
-        System.out.print("Enter work schedule (e.g., Morning, Night): ");
-        String schedule = scanner.nextLine();
-        System.out.print("Enter tenure (years): ");
-        int tenure = scanner.nextInt();
+
+        System.out.println("Enter work schedule (e.g. Morning Shift 6AM-2PM):");
+        String workSchedule = scanner.nextLine();
+
+        System.out.println("Enter monthly salary:");
+        double salary = scanner.nextDouble();
         scanner.nextLine();
 
-        System.out.print("Enter monthly salary: ");
-        double staffSalary = scanner.nextDouble();
-        scanner.nextLine();
-
-        // Create a new AviationStaff object (child class)
-        AviationStaff newStaff = new AviationStaff(name, id, department, "Aviation Staff", staffSalary,
-                designation, schedule, tenure);
-        staffList.add(newStaff);
-        System.out.println("Staff added successfully!\n");
-
+        staffList.add(new AviationStaff(staffName, designation, workSchedule, salary));
+        System.out.println("Staff Added Successfully!");
     }
 
-    // Method #4: editStaff()
+    /**
+     * Modifies an existing aviation staff member's record
+     * (name, designation, schedule, tenure, and salary).
+     */
     public void editStaff(Scanner scanner) {
         if (staffList.isEmpty()) {
-            System.out.println("No staff available to edit.");
+            System.out.println("No Staff available to edit");
             return;
         }
 
         displayStaff();
-        System.out.print("Enter the number of the staff to edit: ");
-        int index = scanner.nextInt();
-        scanner.nextLine();
 
-        if (index >= 1 && index <= staffList.size()) {
-            AviationStaff target = staffList.get(index - 1);
-            System.out.print("Enter new staff name (current: " + target.employeeName + "): ");
-            target.employeeName = scanner.nextLine();
-            System.out.print("Enter new designation (current: " + target.designation + "): ");
-            target.designation = scanner.nextLine();
-            System.out.print("Enter new work schedule (current: " + target.workSchedule + "): ");
-            target.workSchedule = scanner.nextLine();
-            System.out.print("Enter new tenure (current: " + target.tenure + "): ");
-            target.tenure = scanner.nextInt();
+        System.out.println("Enter the staff number you want to edit");
+        int editIndex = scanner.nextInt();
+        scanner.nextLine();
+        editIndex = editIndex - 1; // convert to 0-based index
+
+        if (editIndex >= 0 && editIndex < staffList.size()) {
+            AviationStaff targetStaff = staffList.get(editIndex);
+
+            System.out.println("Enter new staff name");
+            String staffName = scanner.nextLine();
+
+            System.out.println("Enter new work schedule");
+            String workSchedule = scanner.nextLine();
+
+            System.out.println("Enter new salary");
+            double salary = scanner.nextDouble();
             scanner.nextLine();
-            System.out.print("Enter new salary (current: " + target.salary + "): ");
-            target.salary = scanner.nextDouble();
-            scanner.nextLine();
-            System.out.println("Staff updated successfully!\n");
+
+            targetStaff.staffName = staffName;
+            targetStaff.workSchedule = workSchedule;
+            targetStaff.salary = salary;
+            System.out.println("Staff updated Successfully");
         } else {
-            System.out.println("Invalid number selected.");
+            System.out.println("Invalid Staff Number selected");
         }
     }
 
-    // Method #5: staffActions()
+    /**
+     * Opens an interactive action sub-menu for a selected staff member
+     * to manage duty clock-ins and overtime calculations.
+     */
     public void staffActions(Scanner scanner) {
         if (staffList.isEmpty()) {
-            System.out.println("No staff available to manage.");
+            System.out.println("No staff available.");
             return;
         }
 
         displayStaff();
-        System.out.print("Enter the number of the staff to manage: ");
+        System.out.println("Select a staff number to manage:");
         int index = scanner.nextInt();
         scanner.nextLine();
+        index = index - 1;
 
-        if (index >= 1 && index <= staffList.size()) {
-            AviationStaff target = staffList.get(index - 1);
-            System.out.println("\n--- Actions for " + target.employeeName + " ---");
-            System.out.println("1. Time In (Clock In)");
-            System.out.println("2. Time Out (Clock Out)");
-            System.out.println("3. Compute Overtime Pay");
-            System.out.print("Enter action choice: ");
-            int action = scanner.nextInt();
+        if (index < 0 || index >= staffList.size()) {
+            System.out.println("Invalid staff number selected.");
+            return;
+        }
+
+        AviationStaff staff = staffList.get(index);
+        int choice;
+
+        do {
+            System.out.println("--- Actions for " + staff.staffName + " ---");
+            System.out.println("1. Time In");
+            System.out.println("2. Time Out");
+            System.out.println("3. Update Designation");
+            System.out.println("4. Compute Overtime");
+            System.out.println("5. Back to Main Menu");
+
+            choice = scanner.nextInt();
             scanner.nextLine();
 
-            switch (action) {
+            switch (choice) {
                 case 1:
-                    target.timeIn();
+                    staff.timeIn();
                     break;
                 case 2:
-                    target.timeOut();
+                    staff.timeOut();
                     break;
                 case 3:
-                    System.out.print("Enter overtime hours worked: ");
-                    int hours = scanner.nextInt();
-                    scanner.nextLine();
-                    target.computeOvertime(hours);
+                    staff.updateDesignation(scanner);
+                    break;
+                case 4:
+                    staff.computeOvertime(scanner);
+                    break;
+                case 5:
                     break;
                 default:
-                    System.out.println("Invalid action choice.");
+                    System.out.println("Invalid choice. Try again.");
             }
-        } else {
-            System.out.println("Invalid number selected.");
-        }
+        } while (choice != 5);
     }
 
-    // Method #6: startMenu() – the main driver
+    /**
+     * Main interactive menu loop for the Aviation Staff Management System.
+     */
     public void startMenu() {
         Scanner scanner = new Scanner(System.in);
         int choice;
 
         do {
-            System.out.println("\n===== EMPLOYEE MANAGEMENT MENU =====");
-            System.out.println("1. Display my info");
-            System.out.println("2. Display all staff");
-            System.out.println("3. Add new staff");
-            System.out.println("4. Edit a staff");
-            System.out.println("5. Staff actions (Time in/out, Overtime)");
+            System.out.println("Aviation Staff Management Menu");
+            System.out.println("1. View Manager Info");
+            System.out.println("2. View All Aviation Staff");
+            System.out.println("3. Add New Aviation Staff");
+            System.out.println("4. Edit Aviation Staff");
+            System.out.println("5. Staff Actions (Time In/Out, Overtime)");
             System.out.println("6. Exit");
-            System.out.print("Enter your choice: ");
+
             choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -183,10 +221,8 @@ public class Employee {
                     System.out.println("Exiting program. Goodbye!");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Invalid choice. Please select 1-6.");
             }
         } while (choice != 6);
-
-        scanner.close();
     }
 }
