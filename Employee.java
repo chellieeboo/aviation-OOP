@@ -6,9 +6,9 @@ import java.util.Scanner;
  * Main Class
  *
  * Represents an Aviation Operations manager/employee. This class "has"
- * (manages) a list of AviationStaff members - a composition / "has-many"
+ * (manages) a list of Pilot members - a composition / "has-many"
  * relationship, NOT inheritance. One Employee can oversee many
- * AviationStaff (1 -------- 0..*).
+ * Pilot (1 -------- 0..*).
  */
 public class Employee {
 
@@ -19,8 +19,8 @@ public class Employee {
     String position;
     double salary;
 
-    // Composition: Employee "has" a list of AviationStaff
-    ArrayList<AviationStaff> staffList;
+    // Composition: Employee "has" a list of Pilot
+    ArrayList<Pilot> staffList;
 
     // ================= Constructor =================
     public Employee(String employeeName, int employeeId, String department, String position, double salary) {
@@ -83,7 +83,7 @@ public class Employee {
         double salary = scanner.nextDouble();
         scanner.nextLine();
 
-        staffList.add(new AviationStaff(staffName, designation, workSchedule, salary));
+        staffList.add(new Pilot(staffName, designation, workSchedule, salary));
         System.out.println("Staff Added Successfully!");
     }
 
@@ -105,7 +105,7 @@ public class Employee {
         editIndex = editIndex - 1; // convert to 0-based index
 
         if (editIndex >= 0 && editIndex < staffList.size()) {
-            AviationStaff targetStaff = staffList.get(editIndex);
+            Pilot targetStaff = staffList.get(editIndex);
 
             System.out.println("Enter new staff name");
             String staffName = scanner.nextLine();
@@ -147,7 +147,7 @@ public class Employee {
             return;
         }
 
-        AviationStaff staff = staffList.get(index);
+        Pilot staff = staffList.get(index);
         int choice;
 
         do {
