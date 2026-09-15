@@ -4,10 +4,15 @@ import java.util.Scanner;
  * Pilot.java
  * Object/Child Class
  *
- * Represents an individual aviation staff member (e.g. Pilot, Co-pilot,
- * Ground Crew) managed by an Employee (manager). This class is used
- * inside an ArrayList<Pilot> that lives inside the Employee class
- * (composition / "has-many" relationship, NOT inheritance).
+ * Represents an individual aviation staff member managed by an Employee
+ * (manager). This class is used inside an ArrayList<Pilot> that lives
+ * inside the Employee class (composition / "has-many" relationship,
+ * NOT inheritance).
+ *
+ * Note on naming: "Pilot" is used here as the general class name for an
+ * aviation staff member (per instructor's note), while the `designation`
+ * property still records the staff member's specific role within the
+ * flight crew (e.g. Pilot, Co-pilot, Ground Crew).
  */
 public class Pilot {
 
@@ -89,6 +94,13 @@ public class Pilot {
         System.out.println("Enter extra duty/flight hours worked:");
         double extraHours = scanner.nextDouble();
         scanner.nextLine();
+
+        // Input validation: reject negative hours
+        while (extraHours < 0) {
+            System.out.println("Invalid input. Extra hours cannot be negative. Please try again:");
+            extraHours = scanner.nextDouble();
+            scanner.nextLine();
+        }
 
         double hourlyRate = salary / 160.0; // assume 160 standard working hours/month
         double overtimeRate = hourlyRate * 1.25; // 25% overtime premium
