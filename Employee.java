@@ -83,6 +83,13 @@ public class Employee {
         double salary = scanner.nextDouble();
         scanner.nextLine();
 
+        // Input validation: reject negative salary
+        while (salary < 0) {
+            System.out.println("Invalid input. Salary cannot be negative. Please try again:");
+            salary = scanner.nextDouble();
+            scanner.nextLine();
+        }
+
         staffList.add(new Pilot(staffName, designation, workSchedule, salary));
         System.out.println("Staff Added Successfully!");
     }
@@ -116,6 +123,13 @@ public class Employee {
             System.out.println("Enter new salary");
             double salary = scanner.nextDouble();
             scanner.nextLine();
+
+            // Input validation: reject negative salary
+            while (salary < 0) {
+                System.out.println("Invalid input. Salary cannot be negative. Please try again:");
+                salary = scanner.nextDouble();
+                scanner.nextLine();
+            }
 
             targetStaff.staffName = staffName;
             targetStaff.workSchedule = workSchedule;
