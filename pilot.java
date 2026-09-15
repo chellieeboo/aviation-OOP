@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
 /**
- * AviationStaff.java
+ * Pilot.java
  * Object/Child Class
  *
  * Represents an individual aviation staff member (e.g. Pilot, Co-pilot,
  * Ground Crew) managed by an Employee (manager). This class is used
- * inside an ArrayList<AviationStaff> that lives inside the Employee class
+ * inside an ArrayList<Pilot> that lives inside the Employee class
  * (composition / "has-many" relationship, NOT inheritance).
  */
-public class AviationStaff {
+public class Pilot {
 
     // ================= Properties =================
     String staffName;
@@ -19,7 +19,7 @@ public class AviationStaff {
     double salary;
 
     // ================= Constructor =================
-    public AviationStaff(String staffName, String designation, String workSchedule, double salary) {
+    public Pilot(String staffName, String designation, String workSchedule, double salary) {
         this.staffName = staffName;
         this.designation = designation;
         this.workSchedule = workSchedule;
