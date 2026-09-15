@@ -1,20 +1,10 @@
-# FINAL PROJECT DOCUMENTATION
+DOCUMENTATION
 
-**Name:** Rochelle Bayogbog  
-**Course & Year:** BSIT 2nd Year
-**Subject:** Object-Oriented Programming  
-
----
-
-**CHOSEN MAIN CLASS:** Employee  
-**CHILD CLASS:** AviationStaff  
-
----
-
-## Class Diagram
+CHOSEN CLASS
+CHOSEN MAIN CLASS: Employee
+CHILD CLASS: Pilot
 
 Class Diagram
-
                               Main Class
             ┌─────────────────────────────────────────┐
             │ Employee: Properties                    │
@@ -34,63 +24,56 @@ Class Diagram
                               │
                               │  has  1 ────── 0..*
                               ▼
-                              Object/Child Class
+
             ┌─────────────────────────────────────────┐
-            │ AviationStaff: Properties               │
+            │ Pilot: Properties                       │
             │ - staffName                             │
             │ - designation                           │
             │ - workSchedule                          │
-            │ - tenure                                │
             │ - isClockedIn                           │
+            │ - salary                                │
             ├─────────────────────────────────────────┤
-            │ AviationStaff: Methods                  │
+            │ Pilot: Methods                          │
             │ + displayInfo()                         │
             │ + timeIn()                              │
             │ + timeOut()                             │
             │ + updateDesignation()                   │
             │ + computeOvertime()                     │
             └─────────────────────────────────────────┘
-## Methods
+            Properties: Employee (Main Class)
 
-### MAIN CLASS: Employee
-**Methods:**
-- **`displayInfo()`**: Displays the personal and employment details of the employee (ID, Name, Department, Position, Salary).
-- **`displayStaff()`**: Displays the formatted list of all registered aviation staff members under this manager.
-- **`addStaff()`**: Prompts the user for details to register a new aviation staff member and adds them to the staff list.
-- **`editStaff()`**: Modifies an existing aviation staff member's record (name, designation, schedule, tenure, and salary).
-- **`staffActions()`**: Opens an interactive action sub-menu for a selected staff member to manage duty clock-ins and overtime calculations.
+Data Type	Property	Description	Sample Value
+String	employeeName	Full name of the employee or manager	Rochelle Bayogbog
+int	employeeId	Unique numeric identifier for the employee	6362
+String	department	Department where the employee is assigned	Aviation Operations
+String	position	Primary job title	Senior Manager
+double	salary	Monthly base compensation in PHP	50000.00
 
----
+CHILD CLASS: Pilot
 
-### CHILD CLASS: AviationStaff
-**Methods:**
-- **`displayInfo()`**: Displays the complete details of the aviation staff member, overriding the parent method to include both base employee details and aviation-specific attributes.
-- **`timeIn()`**: Clocks the staff member in for duty, updating their attendance status to on-duty if they have not already clocked in.
-- **`timeOut()`**: Clocks the staff member out after their shift or flight has concluded, updating their status to off-duty.
-- **`updateDesignation()`**: Updates the staff member's aviation designation (e.g., promotion from Co-pilot to Pilot) and confirms the change.
-- **`computeOvertime()`**: Calculates the total overtime compensation based on the staff member's monthly salary and the number of extra flight/duty hours worked.
+Properties: Pilot Class
 
----
+Data Type	Property	Description	Sample Value
+String	staffName	Full name of the aviation staff member	Juan Dela Cruz
+String	designation	Specific aviation job role or flight position	Co-pilot
+String	workSchedule	Assigned shift or duty hours	Morning
+boolean	isClockedIn	Flight/duty attendance status	true
+double	salary	Monthly base salary used for overtime computation	32000.00
 
-## AI Usage Statement
+METHODS: EMPLOYEE
 
-> **AI Usage Statement:**  
-> During the development and documentation of this project, **Google Antigravity (AI Assistant)** was utilized as a coding mentor and reviewer. AI assistance was used to:
-> - Review project code for syntax errors, logic bugs, and formatting issues.
-> - Troubleshoot constructor initialization values (resolving hardcoded salary values).
-> - Integrate aviation staff action methods into the console user interface.
-> - Assist in formatting the technical documentation according to the course rubric.  
-> 
-> All core application design, class structures, logic implementations, and final revisions were reviewed, verified, and compiled by the student.
+displayInfo(): Displays the personal and employment details of the employee, including ID, Name, Department, Position, and Salary.
+displayStaff(): Displays the formatted list of all Pilot members stored in the employee's staffList.
+addStaff(): Prompts the user for the details of a new aviation staff member, creates a Pilot object, and adds it to the staffList.
+editStaff(): Modifies the information of an existing Pilot record, such as name, work schedule, and salary.
+staffActions(): Opens an interactive action sub-menu for a selected Pilot to manage time-in, time-out, designation updates, and overtime calculations.
 
----
+PILOT CLASS
 
-## Project Grading Rubric Compliance
+Methods:
 
-| Component | Max Points | Self-Assessment / Remarks |
-|---|:---:|---|
-| **Documentation** | **20 pts** | Complete documentation following the exact required format (Class Diagrams, Properties Table, Methods List, and AI Statement). |
-| **Properties** | **50 pts** | 5 properties for `Employee` + 5 properties for `AviationStaff` with exact data types, descriptions, and sample values. *(5 properties × 10 pts = 50 pts)* |
-| **Methods** | **50 pts** | 5 methods for `Employee` + 5 methods for `AviationStaff` with clear descriptions and business logic. *(5 methods × 10 pts = 50 pts)* |
-| **Overall / Presentation** | **30 pts** | Working console program with 0 compilation errors, clean interactive menu, and tested end-to-end execution. |
-| **TOTAL** | **150 pts** | **150 / 150 pts** |
+displayInfo(): Displays the complete details of an aviation staff member, including name, designation, work schedule, clock-in status, and salary.
+timeIn(): Changes the staff member's attendance status to clocked in if they are not already on duty.
+timeOut(): Changes the staff member's attendance status to clocked out if they are currently on duty.
+updateDesignation(): Updates the staff member's aviation designation, such as changing from Co-pilot to Pilot.
+computeOvertime(): Calculates the staff member's overtime compensation based on their monthly salary and the number of extra duty or flight hours worked.
